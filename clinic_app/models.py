@@ -22,7 +22,7 @@ class Patient(models.Model):
   birth_certificate_no = models.IntegerField(blank=True,null=True)
   gender = models.CharField(max_length=15, choices= GENDER_CHOICES)
   age = models.IntegerField()
-  phone = models.IntegerField(max_length=10,blank=True,null=True)
+  phone = models.IntegerField(blank=True,null=True)
 
 class Visit(models.Model):
   date_visited = models.DateTimeField(auto_now_add=True)
