@@ -18,10 +18,11 @@ GENDER_CHOICES = (
 class Patient(models.Model):
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
-  id_number = models.IntegerField(blank=True)
-  birth_certificate_no = models.IntegerField(blank=True)
+  id_number = models.IntegerField(blank=True,null=True)
+  birth_certificate_no = models.IntegerField(blank=True,null=True)
   gender = models.CharField(max_length=15, choices= GENDER_CHOICES)
   age = models.IntegerField()
+  phone = models.IntegerField(max_length=10,blank=True,null=True)
 
 class Visit(models.Model):
   date_visited = models.DateTimeField(auto_now_add=True)
