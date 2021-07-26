@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+  <a href="{% url 'home' %}" class="navbar-brand">MEDS</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      {% if user.is_authenticated %}
+
+      <a class="nav-item nav-link" href="/logout">Logout</a>
+
+      {% else %}
+
+      <a class="nav-item nav-link"  href="{% url 'login' %}">Login</a>
+
+      {% endif %}
+  </div>
+</nav>
