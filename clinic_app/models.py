@@ -22,3 +22,9 @@ class Patient(models.Model):
   birth_certificate_no = models.IntegerField(blank=True)
   gender = models.CharField(max_length=15, choices= GENDER_CHOICES)
   age = models.IntegerField()
+
+class Visit(models.Model):
+  date_visited = models.DateTimeField(auto_now_add=True)
+  updated_on = models.DateTimeField(auto_now=True)
+  patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  note = models.TextField()
