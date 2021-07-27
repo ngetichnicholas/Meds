@@ -13,5 +13,7 @@ urlpatterns = [
   path('add_patient', app_views.add_patient,name='add_patient'),
   path('add_appointment', app_views.add_appointment,name='add_appointment'),
   path('add_prescription', app_views.add_prescription,name='add_prescription'),
+  path('add_drug', app_views.add_drug,name='add_drug'),
+
 
 ]

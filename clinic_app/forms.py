@@ -16,3 +16,8 @@ class AddPrescriptionForm(forms.ModelForm):
   class Meta:
     model = Prescription
     fields = ('patient','drug','prescriber','note')
+
+class AddDrugForm(forms.ModelForm):
+  class Meta:
+    model = Medicine
+    fields = ('name',)
