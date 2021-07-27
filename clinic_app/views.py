@@ -45,3 +45,16 @@ def add_patient(request):
     
   return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
 
+def add_appointment(request):
+  if request.method == 'POST':
+    add_appointment_form = AddAppointmentForm(request.POST)
+    if add_appointment_form.is_valid():
+      patient = add_appointment_form.save(commit=False)
+      patient.save()
+      return redirect('home')
+
+  else:
+    add_appointment_form = AddAppointmentForm()
+    
+  return render(request, 'add_appointment.html',{'add_appointment_form':add_appointment_form})
+
