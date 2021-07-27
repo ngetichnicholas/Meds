@@ -42,3 +42,9 @@ class Visit(models.Model):
   updated_on = models.DateTimeField(auto_now=True)
   patient = models.ForeignKey(Patient,on_delete=CASCADE)
   note = models.TextField()
+
+class Medicine(models.Model):
+  name = models.CharField(max_length=144)
+
+  def __str__(self):
+      return self.name
