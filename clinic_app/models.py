@@ -8,8 +8,6 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 
-
-
 # Create your models here.
 class ClinicalStaff(models.Model):
   staff = models.OneToOneField(User,on_delete=CASCADE)
@@ -70,7 +68,7 @@ class PatientHealthHistory(models.Model):
   health_record = models.TextField()
 
   def __str__(self):
-      return self.patient.first_name
+    return self.patient.first_name
 
 class PatientAppointment(models.Model):
   first_name = models.CharField(max_length=30)
@@ -82,5 +80,13 @@ class PatientAppointment(models.Model):
   appointment_date = DateTimeField(default=timezone.now)
 
   def __str__(self):
-      return self.first_name
+    return self.first_name
+
+class FeedBack(models.Model):
+  patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  feedback_message = models.TextField()
+  feedback_date = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+    return self.patient.first_name
 
