@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
+from .forms import *
 
 
 
