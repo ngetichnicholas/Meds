@@ -5,4 +5,4 @@ from .models import *
 class AddPatientForm(forms.ModelForm):
   class Meta:
     model = Patient
-    fields = ('first_name','last_name','id_name','birth_certificate_no','gender','age','phone')
+    fields = ('first_name','last_name','id_number','birth_certificate_no','gender','age','phone')

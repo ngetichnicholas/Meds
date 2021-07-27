@@ -40,8 +40,8 @@ def add_patient(request):
       patient.save()
       return redirect('home')
 
-    else:
-      add_patient_form = AddPatientForm()
+  else:
+    add_patient_form = AddPatientForm()
     
-    return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
+  return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
 
