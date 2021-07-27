@@ -17,7 +17,7 @@ class ClinicalStaff(models.Model):
   profile_picture = CloudinaryField('image')
 
   def __str__(self):
-    return self.user.username
+    return self.staff.username
 
 @receiver(post_save, sender=User)
 def update_staff_signal(sender, instance, created, **kwargs):
