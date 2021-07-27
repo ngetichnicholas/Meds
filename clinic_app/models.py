@@ -65,6 +65,13 @@ class Prescription(models.Model):
   def __str__(self):
     return self.patient.first_name
 
+class PatientHealthHistory(models.Model):
+  patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  health_record = models.TextField()
+
+  def __str__(self):
+      return self.patient.first_name
+
 class PatientAppointment(models.Model):
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
