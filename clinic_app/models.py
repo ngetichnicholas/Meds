@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from cloudinary.models import CloudinaryField
+from django.db.models.fields import DateTimeField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+
 
 
 
@@ -60,4 +63,17 @@ class Prescription(models.Model):
   note = models.TextField()
 
   def __str__(self):
-      return self.patient.first_name
+    return self.patient.first_name
+
+class PatientAppointment(models.Model):
+  first_name = models.CharField(max_length=30)
+  last_name = models.CharField(max_length=30)
+  gender = models.CharField(max_length=15, choices= GENDER_CHOICES)
+  age = models.IntegerField()
+  phone = models.IntegerField(blank=True,null=True)
+  date_made = models.DateTimeField(auto_now_add=True)
+  appointment_date = DateTimeField(default=timezone.now)
+
+  def __str__(self):
+      return self.first_name
+
