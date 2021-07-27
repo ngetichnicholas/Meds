@@ -6,3 +6,8 @@ class AddPatientForm(forms.ModelForm):
   class Meta:
     model = Patient
     fields = ('first_name','last_name','id_number','birth_certificate_no','gender','age','phone')
+
+class AddAppointmentForm(forms.ModelForm):
+  class Meta:
+    model = PatientAppointment
+    fields = ('first_name','last_name','gender','age','phone','date_made','appointment_date')
