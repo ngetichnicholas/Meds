@@ -71,3 +71,16 @@ def add_prescription(request):
     
   return render(request, 'add_prescription.html',{'add_prescription_form':add_prescription_form})
 
+def add_drug(request):
+  if request.method == 'POST':
+    add_drug_form = AddDrugForm(request.POST)
+    if add_drug_form.is_valid():
+      patient = add_drug_form.save(commit=False)
+      patient.save()
+      return redirect('home')
+
+  else:
+    add_drug_form = AddDrugForm()
+    
+  return render(request, 'add_drug.html',{'add_drug_form':add_drug_form})
+
