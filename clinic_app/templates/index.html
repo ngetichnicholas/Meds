@@ -8,6 +8,8 @@
       <h1>Meds</h1>
       {% if user.is_authenticated %}
       <a class="nav-item nav-link"  href="{% url 'add_patient' %}"><button class="btn btn-primary">Add patient</button></a>
+      <a class="nav-item nav-link"  href="{% url 'add_appointment' %}"><button class="btn btn-primary">Add Appointment</button></a>
+
       {% endif %}
     </div>
       <div class="col-md-3"></div>
