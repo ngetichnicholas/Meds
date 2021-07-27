@@ -37,6 +37,9 @@ class Patient(models.Model):
   age = models.IntegerField()
   phone = models.IntegerField(blank=True,null=True)
 
+  def __str__(self):
+    return self.first_name
+
 class Visit(models.Model):
   date_visited = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
@@ -47,4 +50,14 @@ class Medicine(models.Model):
   name = models.CharField(max_length=144)
 
   def __str__(self):
-      return self.name
+    return self.name
+
+class Prescription(models.Model):
+  patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  drug = models.ForeignKey(Medicine,on_delete=CASCADE)
+  prescriber = models.ForeignKey(ClinicalStaff,on_delete=CASCADE)
+  date = models.DateTimeField(auto_now_add=True)
+  note = models.TextField()
+
+  def __str__(self):
+      return self.patient.first_name
