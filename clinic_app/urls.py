@@ -14,6 +14,8 @@ urlpatterns = [
   path('add_appointment', app_views.add_appointment,name='add_appointment'),
   path('add_prescription', app_views.add_prescription,name='add_prescription'),
   path('add_drug', app_views.add_drug,name='add_drug'),
+  path('add_health_history', app_views.add_health_history,name='add_health_history'),
+  path('add_feedback', app_views.add_feedback,name='add_feedback'),
 
 
 ]
