@@ -30,3 +30,17 @@ def login(request):
       messages.error(request, "Invalid username or password.")
   form = AuthenticationForm()
   return render(request = request,template_name = "registration/login.html",context={"form":form})
+
+def add_patient(request):
+  if request.method == 'POST':
+    add_patient_form = AddPatientForm(request.POST)
+    if add_patient_form.is_valid():
+      patient = add_patient_form.save(commit=False)
+      patient.save()
+      return redirect('home')
+
+    else:
+      add_patient_form = AddPatientForm()
+    
+    return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
+
