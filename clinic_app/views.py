@@ -49,8 +49,8 @@ def add_appointment(request):
   if request.method == 'POST':
     add_appointment_form = AddAppointmentForm(request.POST)
     if add_appointment_form.is_valid():
-      patient = add_appointment_form.save(commit=False)
-      patient.save()
+      appointment = add_appointment_form.save(commit=False)
+      appointment.save()
       return redirect('home')
 
   else:
@@ -62,8 +62,8 @@ def add_prescription(request):
   if request.method == 'POST':
     add_prescription_form = AddPrescriptionForm(request.POST)
     if add_prescription_form.is_valid():
-      patient = add_prescription_form.save(commit=False)
-      patient.save()
+      prescription = add_prescription_form.save(commit=False)
+      prescription.save()
       return redirect('home')
 
   else:
@@ -75,12 +75,39 @@ def add_drug(request):
   if request.method == 'POST':
     add_drug_form = AddDrugForm(request.POST)
     if add_drug_form.is_valid():
-      patient = add_drug_form.save(commit=False)
-      patient.save()
+      drug = add_drug_form.save(commit=False)
+      drug.save()
       return redirect('home')
 
   else:
     add_drug_form = AddDrugForm()
     
   return render(request, 'add_drug.html',{'add_drug_form':add_drug_form})
+
+def add_feedback(request):
+  if request.method == 'POST':
+    add_feedback_form = AddDrugForm(request.POST)
+    if add_feedback_form.is_valid():
+      feedback = add_feedback_form.save(commit=False)
+      feedback.save()
+      return redirect('home')
+
+  else:
+    add_feedback_form = AddFeedbackForm()
+    
+  return render(request, 'add_feedback.html',{'add_feedback_form':add_feedback_form})
+
+def add_health_history(request):
+  if request.method == 'POST':
+    add_history_form = AddHealthHistoryForm(request.POST)
+    if add_history_form.is_valid():
+      history = add_history_form.save(commit=False)
+      history.save()
+      return redirect('home')
+
+  else:
+    add_history_form = AddHealthHistoryForm()
+    
+  return render(request, 'add_health_history.html',{'add_history_form':add_history_form})
+
 
