@@ -86,7 +86,7 @@ def add_drug(request):
 
 def add_feedback(request):
   if request.method == 'POST':
-    add_feedback_form = AddDrugForm(request.POST)
+    add_feedback_form = AddFeedbackForm(request.POST)
     if add_feedback_form.is_valid():
       feedback = add_feedback_form.save(commit=False)
       feedback.save()

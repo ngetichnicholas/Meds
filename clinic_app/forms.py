@@ -21,3 +21,13 @@ class AddDrugForm(forms.ModelForm):
   class Meta:
     model = Medicine
     fields = ('name',)
+
+class AddHealthHistoryForm(forms.ModelForm):
+  class Meta:
+    model = PatientHealthHistory
+    fields = ('patient','health_record')
+
+class AddFeedbackForm(forms.ModelForm):
+  class Meta:
+    model = FeedBack
+    fields = ('patient','feedback_message')
