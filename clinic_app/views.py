@@ -111,3 +111,17 @@ def add_health_history(request):
   return render(request, 'add_health_history.html',{'add_history_form':add_history_form})
 
 
+def add_visit(request):
+  if request.method == 'POST':
+    add_visit_form = AddVisitForm(request.POST)
+    if add_visit_form.is_valid():
+      visit = add_visit_form.save(commit=False)
+      visit.save()
+      return redirect('home')
+
+  else:
+    add_visit_form = AddVisitForm()
+    
+  return render(request, 'add_visit.html',{'add_visit_form':add_visit_form})
+
+

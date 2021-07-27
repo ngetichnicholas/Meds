@@ -31,3 +31,8 @@ class AddFeedbackForm(forms.ModelForm):
   class Meta:
     model = FeedBack
     fields = ('patient','feedback_message')
+
+class AddVisitForm(forms.ModelForm):
+  class Meta:
+    model = Visit
+    fields = ('patient','note')
