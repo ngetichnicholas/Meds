@@ -6,21 +6,36 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="row">
-        {% if patients %}
-        {% for patient in patients %}
-        <div class="">
-          <h2> {{patient.first_name}} {{patient.second_name}}</h2>
-          <p>Telephone No: {{patient.phone}}</p>
-          <p>Gender: {{patient.gender}}</p>
-          <p>ID Number: {{patient.id_number}}</p>
-          <p>Age: {{patient.age}}</p>
-          <div class="">
-            <a href="{% url 'update_patient' patient.id %}" class="btn btn-success">Update</a>
-            <a href="{% url 'delete_patient' patient.id %}" class="btn  btn-danger">Delete</a>
-          </div>
-        </div>
-        {% endfor %}
-        {% endif %}
+        <table>
+          <tr>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>ID Number</th>
+            <th>Birth Certicate No</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Phone No</th>
+            <th>Edit</th>
+            <th>View</th>
+            <th>Delete</th>
+          </tr>
+          {% if patients %}
+          {% for patient in patients %}
+          <tr>
+            <td>{{patient.first_name}}</td>
+            <td>{{patient.second_name}}</td>
+            <td>{{patient.id_number}}</td>
+            <td>{{patient.birth_certificate_no}}</td>
+            <td>{{patient.age}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.phone}}</td>
+            <td><a href="{% url 'update_patient' patient.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
+            <td><a href="{% url 'update_patient' patient.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
+            <td><a href="{% url 'delete_patient' patient.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </table>
       </div>
     </div>
     <div class="col-md-3"></div>
