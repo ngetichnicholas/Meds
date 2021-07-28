@@ -92,6 +92,7 @@ class Prescription(models.Model):
 
 class PatientHealthHistory(models.Model):
   patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  date_recorded = models.DateTimeField(auto_now_add=True)
   health_record = models.TextField()
 
   def save_patient_health_history(self):

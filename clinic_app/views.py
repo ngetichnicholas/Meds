@@ -122,6 +122,11 @@ def delete_feedback(request,feedback_id):
     feedback.delete_feedback()
   return redirect('home')
 
+#Health History views
+def history(request):
+  histories = PatientHealthHistory.objects.all().order_by('-date_recorded')
+  return render(request,'history.html',{'histories':histories})
+
 def add_health_history(request):
   if request.method == 'POST':
     add_history_form = HealthHistoryForm(request.POST)
@@ -137,7 +142,7 @@ def add_health_history(request):
 
 @login_required
 def update_history(request, history_id):
-  history = Visit.objects.get(pk=history_id)
+  history = HealthHistoryForm.objects.get(pk=history_id)
   if request.method == 'POST':
     update_history_form = HealthHistoryForm(request.POST,request.FILES, instance=history)
     if update_history_form.is_valid():
@@ -157,6 +162,7 @@ def delete_history(request,history_id):
   return redirect('home')
 
 
+#Patient Visits views
 def visits(request):
   visits = Visit.objects.all().order_by('-date_visited')
   return render(request,'visits.html',{'visits':visits})
