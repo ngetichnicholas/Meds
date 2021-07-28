@@ -135,6 +135,28 @@ def add_health_history(request):
     
   return render(request, 'add_health_history.html',{'add_history_form':add_history_form})
 
+@login_required
+def update_history(request, history_id):
+  history = Visit.objects.get(pk=history_id)
+  if request.method == 'POST':
+    update_history_form = HealthHistoryForm(request.POST,request.FILES, instance=history)
+    if update_history_form.is_valid():
+      update_history_form.save()
+      messages.success(request, f'Health history updated!')
+      return redirect('home')
+  else:
+    update_history_form = HealthHistoryForm(instance=history)
+
+  return render(request, 'update_history.html', {"update_history_form":update_history_form})
+
+@login_required
+def delete_history(request,history_id):
+  history = PatientHealthHistory.objects.get(pk=history_id)
+  if history:
+    history.delete_patient_health_history()
+  return redirect('home')
+
+
 def visits(request):
   visits = Visit.objects.all().order_by('-date_visited')
   return render(request,'visits.html',{'visits':visits})
