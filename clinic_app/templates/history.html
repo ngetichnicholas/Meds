@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        {% if histories %}
+        {% for history in histories %}
+        <div class="">
+          <h2> {{history.patient.first_name}} {{history.patient.second_name}}</h2>
+          <p>{{history.health_record}}</p>
+          <p>Date: {{history.date_recorded}}</p>
+          <div class="">
+            <a href="{% url 'update_history' history.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'delete_history' history.id %}" class="btn  btn-danger">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

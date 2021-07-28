@@ -142,7 +142,7 @@ def add_health_history(request):
 
 @login_required
 def update_history(request, history_id):
-  history = HealthHistoryForm.objects.get(pk=history_id)
+  history = PatientHealthHistory.objects.get(pk=history_id)
   if request.method == 'POST':
     update_history_form = HealthHistoryForm(request.POST,request.FILES, instance=history)
     if update_history_form.is_valid():
