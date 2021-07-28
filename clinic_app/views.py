@@ -125,3 +125,18 @@ def add_visit(request):
   return render(request, 'add_visit.html',{'add_visit_form':add_visit_form})
 
 
+@login_required
+def update_visit(request, visit_id):
+  visit = Visit.objects.get(pk=visit_id)
+  if request.method == 'POST':
+    update_visit_form = AddVisitForm(request.POST,request.FILES, instance=visit)
+    if update_visit_form.is_valid():
+      update_visit_form.save()
+      messages.success(request, f'Visit updated!')
+      return redirect('home')
+  else:
+    update_visit_form = AddVisitForm(instance=visit)
+
+  return render(request, 'update_visit.html', {"update_visit_form":update_visit_form})
+
+
