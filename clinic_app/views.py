@@ -34,93 +34,93 @@ def login(request):
 
 def add_patient(request):
   if request.method == 'POST':
-    add_patient_form = AddPatientForm(request.POST)
+    add_patient_form = PatientForm(request.POST)
     if add_patient_form.is_valid():
       patient = add_patient_form.save(commit=False)
       patient.save()
       return redirect('home')
 
   else:
-    add_patient_form = AddPatientForm()
+    add_patient_form = PatientForm()
     
   return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
 
 def add_appointment(request):
   if request.method == 'POST':
-    add_appointment_form = AddAppointmentForm(request.POST)
+    add_appointment_form = AppointmentForm(request.POST)
     if add_appointment_form.is_valid():
       appointment = add_appointment_form.save(commit=False)
       appointment.save()
       return redirect('home')
 
   else:
-    add_appointment_form = AddAppointmentForm()
+    add_appointment_form = AppointmentForm()
     
   return render(request, 'add_appointment.html',{'add_appointment_form':add_appointment_form})
 
 def add_prescription(request):
   if request.method == 'POST':
-    add_prescription_form = AddPrescriptionForm(request.POST)
+    add_prescription_form = PrescriptionForm(request.POST)
     if add_prescription_form.is_valid():
       prescription = add_prescription_form.save(commit=False)
       prescription.save()
       return redirect('home')
 
   else:
-    add_prescription_form = AddPrescriptionForm()
+    add_prescription_form = PrescriptionForm()
     
   return render(request, 'add_prescription.html',{'add_prescription_form':add_prescription_form})
 
 def add_drug(request):
   if request.method == 'POST':
-    add_drug_form = AddDrugForm(request.POST)
+    add_drug_form = DrugForm(request.POST)
     if add_drug_form.is_valid():
       drug = add_drug_form.save(commit=False)
       drug.save()
       return redirect('home')
 
   else:
-    add_drug_form = AddDrugForm()
+    add_drug_form = DrugForm()
     
   return render(request, 'add_drug.html',{'add_drug_form':add_drug_form})
 
 def add_feedback(request):
   if request.method == 'POST':
-    add_feedback_form = AddFeedbackForm(request.POST)
+    add_feedback_form = FeedbackForm(request.POST)
     if add_feedback_form.is_valid():
       feedback = add_feedback_form.save(commit=False)
       feedback.save()
       return redirect('home')
 
   else:
-    add_feedback_form = AddFeedbackForm()
+    add_feedback_form = FeedbackForm()
     
   return render(request, 'add_feedback.html',{'add_feedback_form':add_feedback_form})
 
 def add_health_history(request):
   if request.method == 'POST':
-    add_history_form = AddHealthHistoryForm(request.POST)
+    add_history_form = HealthHistoryForm(request.POST)
     if add_history_form.is_valid():
       history = add_history_form.save(commit=False)
       history.save()
       return redirect('home')
 
   else:
-    add_history_form = AddHealthHistoryForm()
+    add_history_form = HealthHistoryForm()
     
   return render(request, 'add_health_history.html',{'add_history_form':add_history_form})
 
 
 def add_visit(request):
   if request.method == 'POST':
-    add_visit_form = AddVisitForm(request.POST)
+    add_visit_form = VisitForm(request.POST)
     if add_visit_form.is_valid():
       visit = add_visit_form.save(commit=False)
       visit.save()
       return redirect('home')
 
   else:
-    add_visit_form = AddVisitForm()
+    add_visit_form = VisitForm()
     
   return render(request, 'add_visit.html',{'add_visit_form':add_visit_form})
 
@@ -129,13 +129,13 @@ def add_visit(request):
 def update_visit(request, visit_id):
   visit = Visit.objects.get(pk=visit_id)
   if request.method == 'POST':
-    update_visit_form = AddVisitForm(request.POST,request.FILES, instance=visit)
+    update_visit_form = VisitForm(request.POST,request.FILES, instance=visit)
     if update_visit_form.is_valid():
       update_visit_form.save()
       messages.success(request, f'Visit updated!')
       return redirect('home')
   else:
-    update_visit_form = AddVisitForm(instance=visit)
+    update_visit_form = VisitForm(instance=visit)
 
   return render(request, 'update_visit.html', {"update_visit_form":update_visit_form})
 
