@@ -241,6 +241,16 @@ def feedback(request):
   feedbacks = FeedBack.objects.all().order_by('-feedback_date')
   return render(request,'feedback.html',{'feedbacks':feedbacks})
 
+#Get single feedback
+def feedback_details(request,feedback_id):
+  try:
+    feedback =get_object_or_404(FeedBack, pk = feedback_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'feedback_details.html',{'feedback':feedback})
+
 def add_feedback(request):
   if request.method == 'POST':
     add_feedback_form = FeedbackForm(request.POST)
