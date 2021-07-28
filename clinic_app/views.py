@@ -340,6 +340,16 @@ def visits(request):
   visits = Visit.objects.all().order_by('-date_visited')
   return render(request,'visits.html',{'visits':visits})
 
+#Get single visit
+def visit_details(request,visit_id):
+  try:
+    visit =get_object_or_404(Visit, pk = visit_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'visit_details.html',{'visit':visit})
+
 def add_visit(request):
   if request.method == 'POST':
     add_visit_form = VisitForm(request.POST)
