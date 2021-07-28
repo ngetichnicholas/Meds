@@ -142,4 +142,11 @@ def update_visit(request, visit_id):
 
   return render(request, 'update_visit.html', {"update_visit_form":update_visit_form})
 
+@login_required
+def delete_visit(request,visit_id):
+  visit = Visit.objects.get(pk=visit_id)
+  if visit:
+    visit.delete_visit()
+  return redirect('home')
+
 
