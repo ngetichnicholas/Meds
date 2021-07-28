@@ -110,6 +110,9 @@ def add_health_history(request):
     
   return render(request, 'add_health_history.html',{'add_history_form':add_history_form})
 
+def visits(request,patient_id):
+  visits = Visit.objects.filter(patient_id = patient_id).order_by('-date_visited')
+  return render(request,'visits.html',{'visits':visits})
 
 def add_visit(request):
   if request.method == 'POST':
