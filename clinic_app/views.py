@@ -191,6 +191,16 @@ def drugs(request):
   drugs = Medicine.objects.all()
   return render(request,'drugs.html',{'drugs':drugs})
 
+#Get single drug
+def drug_details(request,drug_id):
+  try:
+    drug =get_object_or_404(Medicine, pk = drug_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'drug_details.html',{'drug':drug})
+
 def add_drug(request):
   if request.method == 'POST':
     add_drug_form = DrugForm(request.POST)
