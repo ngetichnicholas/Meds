@@ -141,6 +141,16 @@ def prescriptions(request):
   prescriptions = Prescription.objects.all().order_by('-date')
   return render(request,'prescriptions.html',{'prescriptions':prescriptions})
 
+#Get single prescription
+def prescription_details(request,prescription_id):
+  try:
+    prescription =get_object_or_404(Prescription, pk = prescription_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'prescription_details.html',{'prescription':prescription})
+
 def add_prescription(request):
   if request.method == 'POST':
     add_prescription_form = PrescriptionForm(request.POST)
