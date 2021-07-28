@@ -5,6 +5,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from .forms import *
+from .models import *
 
 
 
@@ -83,6 +84,27 @@ def add_drug(request):
     add_drug_form = DrugForm()
     
   return render(request, 'add_drug.html',{'add_drug_form':add_drug_form})
+
+@login_required
+def update_drug(request, drug_id):
+  drug = Medicine.objects.get(pk=drug_id)
+  if request.method == 'POST':
+    update_drug_form = DrugForm(request.POST,request.FILES, instance=drug)
+    if update_drug_form.is_valid():
+      update_drug_form.save()
+      messages.success(request, f'Drug updated!')
+      return redirect('home')
+  else:
+    update_drug_form = DrugForm(instance=drug)
+
+  return render(request, 'update_drug.html', {"update_drug_form":update_drug_form})
+
+@login_required
+def delete_drug(request,drug_id):
+  drug = Medicine.objects.get(pk=drug_id)
+  if drug:
+    drug.delete_medicine()
+  return redirect('home')
 
 def feedback(request):
   feedbacks = FeedBack.objects.all().order_by('-feedback_date')
