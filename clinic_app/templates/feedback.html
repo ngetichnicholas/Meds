@@ -5,21 +5,30 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <div class="row">
+      <table>
+        <tr>
+          <th>First Name</th>
+          <th>Second Name</th>
+          <th>Feedback</th>
+          <th>Date</th>
+          <th>Edit</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
         {% if feedbacks %}
         {% for feedback in feedbacks %}
-        <div class="">
-          <h2> {{feedback.patient.first_name}} {{feedback.patient.second_name}}</h2>
-          <p>{{feedback.feedback_message}}</p>
-          <p>Date: {{feedback.feedback_date}}</p>
-          <div class="">
-            <a href="{% url 'update_feedback' feedback.id %}" class="btn btn-success">Update</a>
-            <a href="{% url 'delete_feedback' feedback.id %}" class="btn  btn-danger">Delete</a>
-          </div>
-        </div>
+        <tr>
+          <td>{{feedback.patient.first_name}}</td>
+          <td>{{feedback.patient.last_name}}</td>
+          <td>{{feedback.feedback_message}}</td>
+          <td>{{feedback.feedback_date}}</td>
+          <td><a href="{% url 'update_feedback' feedback.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
+          <td><a href="{% url 'update_feedback' feedback.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
+          <td><a href="{% url 'delete_feedback' feedback.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
+        </tr>
         {% endfor %}
         {% endif %}
-      </div>
+      </table>
     </div>
     <div class="col-md-3"></div>
   </div>
