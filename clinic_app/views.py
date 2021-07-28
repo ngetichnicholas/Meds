@@ -33,6 +33,12 @@ def login(request):
   form = AuthenticationForm()
   return render(request = request,template_name = "registration/login.html",context={"form":form})
 
+
+#Patient views
+def patients(request):
+  patients = Patient.objects.all().order_by('-first_name')
+  return render(request,'patients.html',{'patients':patients})
+
 def add_patient(request):
   if request.method == 'POST':
     add_patient_form = PatientForm(request.POST)
@@ -46,7 +52,32 @@ def add_patient(request):
     
   return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
 
+@login_required
+def update_patient(request, patient_id):
+  patient = Patient.objects.get(pk=patient_id)
+  if request.method == 'POST':
+    update_patient_form = PatientForm(request.POST,request.FILES, instance=patient)
+    if update_patient_form.is_valid():
+      update_patient_form.save()
+      messages.success(request, f'Patient updated!')
+      return redirect('home')
+  else:
+    update_patient_form = PatientForm(instance=patient)
 
+  return render(request, 'update_patient.html', {"update_patient_form":update_patient_form})
+
+@login_required
+def delete_patient(request,patient_id):
+  patient = Patient.objects.get(pk=patient_id)
+  if patient:
+    patient.delete_patient()
+  return redirect('home')
+
+
+#Appointment views
+def appointments(request):
+  appointments = PatientAppointment.objects.all().order_by('-date_made')
+  return render(request,'appointments.html',{'appointments':appointments})
 
 def add_appointment(request):
   if request.method == 'POST':
@@ -82,6 +113,12 @@ def delete_appointment(request,appointment_id):
     appointment.delete_patient_appointment()
   return redirect('home')
 
+
+#Prescription views
+def prescriptions(request):
+  prescriptions = Prescription.objects.all().order_by('-date')
+  return render(request,'prescriptions.html',{'prescriptions':prescriptions})
+
 def add_prescription(request):
   if request.method == 'POST':
     add_prescription_form = PrescriptionForm(request.POST)
@@ -115,6 +152,12 @@ def delete_prescription(request,prescription_id):
   if prescription:
     prescription.delete_prescription()
   return redirect('home')
+
+
+#Medicine views
+def drugs(request):
+  drugs = Medicine.objects.all()
+  return render(request,'drugs.html',{'drugs':drugs})
 
 def add_drug(request):
   if request.method == 'POST':
@@ -150,6 +193,8 @@ def delete_drug(request,drug_id):
     drug.delete_medicine()
   return redirect('home')
 
+
+#Feedback Views
 def feedback(request):
   feedbacks = FeedBack.objects.all().order_by('-feedback_date')
   return render(request,'feedback.html',{'feedbacks':feedbacks})
@@ -267,5 +312,3 @@ def delete_visit(request,visit_id):
   if visit:
     visit.delete_visit()
   return redirect('home')
-
-
