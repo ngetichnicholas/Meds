@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table>
+          <tr>
+            <th>First Name</th>
+            <td>{{prescription.patient.first_name}}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>{{prescription.patient.last_name}}</td>
+          </tr>
+          <tr>
+            <th>Drugs</th>
+            <td>{{prescription.drug}}</td>
+          </tr>
+          <tr>
+            <th>Dose</th>
+            <td>{{prescription.dose}}</td>
+          </tr>
+          <tr>
+            <th>Prescriber</th>
+            <td>{{prescription.prescriber}}</td>
+          </tr>
+          <tr>
+            <th>Note</th>
+            <td>{{prescription.note}}</td>
+          <tr>
+            <th>Date</th>
+            <td>{{prescription.date|date}}</td>
+          </tr>
+          </tr>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

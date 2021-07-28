@@ -10,7 +10,6 @@
           <tr>
             <th>First Name</th>
             <th>Second Name</th>
-            <th>Description</th>
             <th>Date</th>
             <th>Edit</th>
             <th>View</th>
@@ -21,10 +20,9 @@
           <tr>
             <td>{{visit.patient.first_name}}</td>
             <td>{{visit.patient.last_name}}</td>
-            <td>{{visit.note}}</td>
             <td>{{visit.date_visited|date}}</td>
             <td><a href="{% url 'update_visit' visit.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
-            <td><a href="{% url 'update_visit' visit.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
+            <td><a href="{% url 'visit_details' visit.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
             <td><a href="{% url 'delete_visit' visit.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
           </tr>
           {% endfor %}

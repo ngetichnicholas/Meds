@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table>
+          <tr>
+            <th>First Name</th>
+            <td>{{feedback.patient.first_name}}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>{{feedback.patient.last_name}}</td>
+          </tr>
+          <tr>
+            <th>Feedback</th>
+            <td>{{feedback.feedback_message}}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{feedback.feedback_date|date}}</td>
+          </tr>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}
