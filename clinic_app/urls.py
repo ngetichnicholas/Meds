@@ -14,8 +14,12 @@ urlpatterns = [
   path('add_appointment', app_views.add_appointment,name='add_appointment'),
   path('add_prescription', app_views.add_prescription,name='add_prescription'),
   path('add_drug', app_views.add_drug,name='add_drug'),
+
   path('add_health_history', app_views.add_health_history,name='add_health_history'),
-  
+  path('history', app_views.history,name='history'),
+  path('update_history/<int:history_id>', app_views.update_history,name='update_history'),
+  path('delete_history/<int:history_id>', app_views.delete_history,name='delete_history'),
+
   path('add_feedback', app_views.add_feedback,name='add_feedback'),
   path('feedback', app_views.feedback,name='feedback'),
   path('update_feedback/<int:feedback_id>', app_views.update_feedback,name='update_feedback'),
@@ -25,10 +29,4 @@ urlpatterns = [
   path('visits', app_views.visits,name='visits'),
   path('update_visit/<int:visit_id>', app_views.update_visit,name='update_visit'),
   path('delete_visit/<int:visit_id>', app_views.delete_visit,name='delete_visit'),
-
-
-
-
-
-
 ]
