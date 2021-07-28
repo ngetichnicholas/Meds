@@ -5,7 +5,6 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <div class="row">
         <table>
           <tr>
             <th>First Name</th>
@@ -23,7 +22,7 @@
           {% for patient in patients %}
           <tr>
             <td>{{patient.first_name}}</td>
-            <td>{{patient.second_name}}</td>
+            <td>{{patient.last_name}}</td>
             <td>{{patient.id_number}}</td>
             <td>{{patient.birth_certificate_no}}</td>
             <td>{{patient.age}}</td>
@@ -36,7 +35,6 @@
           {% endfor %}
           {% endif %}
         </table>
-      </div>
     </div>
     <div class="col-md-3"></div>
   </div>
