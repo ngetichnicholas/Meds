@@ -15,7 +15,12 @@ urlpatterns = [
   path('add_prescription', app_views.add_prescription,name='add_prescription'),
   path('add_drug', app_views.add_drug,name='add_drug'),
   path('add_health_history', app_views.add_health_history,name='add_health_history'),
+  
   path('add_feedback', app_views.add_feedback,name='add_feedback'),
+  path('feedback', app_views.feedback,name='feedback'),
+  path('update_feedback/<int:feedback_id>', app_views.update_feedback,name='update_feedback'),
+  path('delete_feedback/<int:feedback_id>', app_views.delete_feedback,name='delete_feedback'),
+
   path('add_visit', app_views.add_visit,name='add_visit'),
   path('visits', app_views.visits,name='visits'),
   path('update_visit/<int:visit_id>', app_views.update_visit,name='update_visit'),
