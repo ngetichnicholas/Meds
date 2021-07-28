@@ -1,9 +1,11 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import *
 
@@ -38,6 +40,16 @@ def login(request):
 def patients(request):
   patients = Patient.objects.all().order_by('-first_name')
   return render(request,'patients.html',{'patients':patients})
+
+#Get single patient
+def patient_details(request,patient_id):
+  try:
+    patient =get_object_or_404(Patient, pk = patient_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'patient_details.html',{'patient':patient})
 
 def add_patient(request):
   if request.method == 'POST':
