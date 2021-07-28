@@ -290,6 +290,16 @@ def history(request):
   histories = PatientHealthHistory.objects.all().order_by('-date_recorded')
   return render(request,'history.html',{'histories':histories})
 
+#Get single history
+def history_details(request,history_id):
+  try:
+    history =get_object_or_404(PatientHealthHistory, pk = history_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'history_details.html',{'history':history})
+
 def add_health_history(request):
   if request.method == 'POST':
     add_history_form = HealthHistoryForm(request.POST)
