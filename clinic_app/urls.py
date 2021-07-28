@@ -17,6 +17,12 @@ urlpatterns = [
   path('add_health_history', app_views.add_health_history,name='add_health_history'),
   path('add_feedback', app_views.add_feedback,name='add_feedback'),
   path('add_visit', app_views.add_visit,name='add_visit'),
+  path('visits', app_views.visits,name='visits'),
+  path('update_visit/<int:visit_id>', app_views.update_visit,name='update_visit'),
+  path('delete_visit/<int:visit_id>', app_views.delete_visit,name='delete_visit'),
+
+
+
 
 
 
