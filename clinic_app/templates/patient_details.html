@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table>
+          <tr>
+            <th>First Name</th>
+            <td>{{patient.first_name}}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>{{patient.last_name}}</td>
+          </tr>
+          <tr>
+            <th>ID Number</th>
+            <td>{{patient.id_number}}</td>
+          </tr>
+          <tr>
+            <th>Birth Certicate No</th>
+            <td>{{patient.birth_certificate_no}}</td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>{{patient.gender}}</td>
+          </tr>
+          <tr>
+            <th>Age</th>
+            <td>{{patient.age}}</td>
+          </tr>
+          <tr>
+            <th>Phone No</th>
+            <td>{{patient.phone}}</td>
+          </tr>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

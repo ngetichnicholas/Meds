@@ -51,5 +51,4 @@ urlpatterns = [
   path('update_visit/<int:visit_id>', app_views.update_visit,name='update_visit'),
   path('delete_visit/<int:visit_id>', app_views.delete_visit,name='delete_visit'),
   path('visit_details/<int:visit_id>',app_views.visit_details,name='visit_details'),
-
 ]
