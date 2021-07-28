@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        {% if patients %}
+        {% for patient in patients %}
+        <div class="">
+          <h2> {{patient.first_name}} {{patient.second_name}}</h2>
+          <p>Telephone No: {{patient.phone}}</p>
+          <p>Gender: {{patient.gender}}</p>
+          <p>ID Number: {{patient.id_number}}</p>
+          <p>Age: {{patient.age}}</p>
+          <div class="">
+            <a href="{% url 'update_patient' patient.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'delete_patient' patient.id %}" class="btn  btn-danger">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

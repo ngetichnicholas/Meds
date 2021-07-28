@@ -1,10 +1,12 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a href="{% url 'home' %}" class="navbar-brand">MEDS</a>
+  <a href="{% url 'home' %}" class="navbar-brand">HOME</a>
   <a href="{% url 'visits' %}" class="navbar-brand">VISITS</a>
-  <a href="{% url 'home' %}" class="navbar-brand">PATIENTS</a>
-  <a href="{% url 'home' %}" class="navbar-brand">APPOINTMENTS</a>
+  <a href="{% url 'patients' %}" class="navbar-brand">PATIENTS</a>
+  <a href="{% url 'appointments' %}" class="navbar-brand">APPOINTMENTS</a>
   <a href="{% url 'feedback' %}" class="navbar-brand">FEEDBACKS</a>
   <a href="{% url 'history' %}" class="navbar-brand">HEALTH HISTORY</a>
+  <a href="{% url 'prescriptions' %}" class="navbar-brand">PRESCRIPTION</a>
+  <a href="{% url 'drugs' %}" class="navbar-brand">DRUGS</a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
   </button>

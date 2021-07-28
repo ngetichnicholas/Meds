@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        {% if drugs %}
+        {% for drug in drugs %}
+        <div class="">
+          <h2> {{drug.name}}</h2>
+          <div class="">
+            <a href="{% url 'update_drug' drug.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'delete_drug' drug.id %}" class="btn  btn-danger">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

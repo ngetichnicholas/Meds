@@ -15,7 +15,7 @@ class AppointmentForm(forms.ModelForm):
 class PrescriptionForm(forms.ModelForm):
   class Meta:
     model = Prescription
-    fields = ('patient','drug','prescriber','note')
+    fields = ('patient','dose','drug','prescriber','note')
 
 class DrugForm(forms.ModelForm):
   class Meta:

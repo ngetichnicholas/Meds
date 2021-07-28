@@ -76,6 +76,7 @@ class Medicine(models.Model):
 
 class Prescription(models.Model):
   patient = models.ForeignKey(Patient,on_delete=CASCADE)
+  dose = models.CharField(max_length=30)
   drug = models.ForeignKey(Medicine,on_delete=CASCADE)
   prescriber = models.ForeignKey(ClinicalStaff,on_delete=CASCADE)
   date = models.DateTimeField(auto_now_add=True)

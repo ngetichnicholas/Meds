@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        {% if prescriptions %}
+        {% for prescription in prescriptions %}
+        <div class="">
+          <h2> {{prescription.patient.first_name}} {{prescription.patient.second_name}}</h2>
+          <p>Drug: {{prescription.drug}}</p>
+          <p>Dose: {{prescription.dose}}</p>
+          <p>Prescriber: {{prescription.prescriber}}</p>
+          <p>Description: {{prescription.note}}</p>
+          <p>Date: {{prescription.date|date}}</p>
+
+          <div class="">
+            <a href="{% url 'update_prescription' prescription.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'delete_prescription' prescription.id %}" class="btn  btn-danger">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}
