@@ -21,7 +21,7 @@
           <td>{{history.patient.first_name}}</td>
           <td>{{history.patient.last_name}}</td>
           <td>{{history.health_record}}</td>
-          <td>{{history.date_recorded}}</td>
+          <td>{{history.date_recorded|date}}</td>
           <td><a href="{% url 'update_history' history.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
           <td><a href="{% url 'update_history' history.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
           <td><a href="{% url 'delete_history' history.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>

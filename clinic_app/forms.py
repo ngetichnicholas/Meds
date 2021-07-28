@@ -20,7 +20,7 @@ class PrescriptionForm(forms.ModelForm):
 class DrugForm(forms.ModelForm):
   class Meta:
     model = Medicine
-    fields = ('name',)
+    fields = ('name','description')
 
 class HealthHistoryForm(forms.ModelForm):
   class Meta:

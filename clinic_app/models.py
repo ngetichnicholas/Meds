@@ -64,6 +64,8 @@ class Visit(models.Model):
 
 class Medicine(models.Model):
   name = models.CharField(max_length=144)
+  description = models.TextField()
+  date = models.DateTimeField(auto_now_add=True)
 
   def save_medicine(self):
     self.save()

@@ -6,18 +6,28 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="row">
-        {% if drugs %}
-        {% for drug in drugs %}
-        <div class="">
-          <h2> {{drug.name}}</h2>
-          <div class="">
-            <a href="{% url 'update_drug' drug.id %}" class="btn btn-success">Update</a>
-            <a href="{% url 'delete_drug' drug.id %}" class="btn  btn-danger">Delete</a>
-          </div>
-        </div>
-        {% endfor %}
-        {% endif %}
-      </div>
+        <table>
+          <tr>
+            <th>Drug</th>
+            <th>Description</th>
+            <th>Date Captured</th>
+            <th>Edit</th>
+            <th>View</th>
+            <th>Delete</th>
+          </tr>
+          {% if drugs %}
+          {% for drug in drugs %}
+          <tr>
+            <td>{{drug.name}}</td>
+            <td>{{drug.description}}</td>
+            <td>{{drug.date|date}}</td>
+            <td><a href="{% url 'update_drug' drug.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
+            <td><a href="{% url 'update_drug' drug.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
+            <td><a href="{% url 'delete_drug' drug.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </table>
     </div>
     <div class="col-md-3"></div>
   </div>

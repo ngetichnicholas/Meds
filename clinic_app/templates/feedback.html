@@ -21,7 +21,7 @@
           <td>{{feedback.patient.first_name}}</td>
           <td>{{feedback.patient.last_name}}</td>
           <td>{{feedback.feedback_message}}</td>
-          <td>{{feedback.feedback_date}}</td>
+          <td>{{feedback.feedback_date|date}}</td>
           <td><a href="{% url 'update_feedback' feedback.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
           <td><a href="{% url 'update_feedback' feedback.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
           <td><a href="{% url 'delete_feedback' feedback.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
