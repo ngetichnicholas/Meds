@@ -84,6 +84,10 @@ def add_drug(request):
     
   return render(request, 'add_drug.html',{'add_drug_form':add_drug_form})
 
+def feedback(request):
+  feedbacks = FeedBack.objects.all().order_by('-feedback_date')
+  return render(request,'feedback.html',{'feedbacks':feedbacks})
+
 def add_feedback(request):
   if request.method == 'POST':
     add_feedback_form = FeedbackForm(request.POST)
@@ -96,6 +100,27 @@ def add_feedback(request):
     add_feedback_form = FeedbackForm()
     
   return render(request, 'add_feedback.html',{'add_feedback_form':add_feedback_form})
+
+@login_required
+def update_feedback(request, feedback_id):
+  feedback = FeedBack.objects.get(pk=feedback_id)
+  if request.method == 'POST':
+    update_feedback_form = FeedbackForm(request.POST,request.FILES, instance=feedback)
+    if update_feedback_form.is_valid():
+      update_feedback_form.save()
+      messages.success(request, f'Feedback updated!')
+      return redirect('home')
+  else:
+    update_feedback_form = FeedbackForm(instance=feedback)
+
+  return render(request, 'update_feedback.html', {"update_feedback_form":update_feedback_form})
+
+@login_required
+def delete_feedback(request,feedback_id):
+  feedback = FeedBack.objects.get(pk=feedback_id)
+  if feedback:
+    feedback.delete_feedback()
+  return redirect('home')
 
 def add_health_history(request):
   if request.method == 'POST':
