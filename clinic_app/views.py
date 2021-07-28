@@ -91,6 +91,16 @@ def appointments(request):
   appointments = PatientAppointment.objects.all().order_by('-date_made')
   return render(request,'appointments.html',{'appointments':appointments})
 
+#Get single appointment
+def appointment_details(request,appointment_id):
+  try:
+    appointment =get_object_or_404(PatientAppointment, pk = appointment_id)
+
+  except ObjectDoesNotExist:
+    raise Http404()
+
+  return render(request,'appointment_details.html',{'appointment':appointment})
+
 def add_appointment(request):
   if request.method == 'POST':
     add_appointment_form = AppointmentForm(request.POST)
