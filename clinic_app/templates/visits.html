@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+      {% if visits %}
+      <h1>Number of visits recorded: {{ visites|length }}</h1>
+    {% else %}
+      <h1> Patient has no visits</h1>
+    {% endif %}    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        {% if visits %}
+        <h2>Visits history of {{visit.patient.first_name}} {{visit.patient.first_name}}</h2>
+        {% for visit in visits %}
+        <div class="visit">
+          <p>{{visit.description}}</p>
+          <img src="{{visit.image.url}}" width="100%" class="img-thumbnail " alt="">
+          <p>Date: {{visit.date_visited}}</p>
+          <h2>Description</h2>
+          <p>{{visit.note}}</p>
+          <div class="">
+            <a href="{% url 'update_visit' visit.id %}" class="btn btn-success">Update</a>
+            <a href="{% url 'delete_visit' visit.id %}" class="btn  btn-danger">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}
