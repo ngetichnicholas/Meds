@@ -12,7 +12,6 @@ from .models import *
 
 
 # Create your views here.
-@login_required
 def index(request):
   current_user = request.user
   return render(request, 'index.html',{'current_user':current_user})
@@ -51,6 +50,7 @@ def patient_details(request,patient_id):
 
   return render(request,'patient_details.html',{'patient':patient})
 
+@login_required
 def add_patient(request):
   if request.method == 'POST':
     add_patient_form = PatientForm(request.POST)
@@ -101,6 +101,7 @@ def appointment_details(request,appointment_id):
 
   return render(request,'appointment_details.html',{'appointment':appointment})
 
+@login_required
 def add_appointment(request):
   if request.method == 'POST':
     add_appointment_form = AppointmentForm(request.POST)
@@ -151,6 +152,7 @@ def prescription_details(request,prescription_id):
 
   return render(request,'prescription_details.html',{'prescription':prescription})
 
+@login_required
 def add_prescription(request):
   if request.method == 'POST':
     add_prescription_form = PrescriptionForm(request.POST)
@@ -201,6 +203,7 @@ def drug_details(request,drug_id):
 
   return render(request,'drug_details.html',{'drug':drug})
 
+@login_required
 def add_drug(request):
   if request.method == 'POST':
     add_drug_form = DrugForm(request.POST)
@@ -251,6 +254,7 @@ def feedback_details(request,feedback_id):
 
   return render(request,'feedback_details.html',{'feedback':feedback})
 
+@login_required
 def add_feedback(request):
   if request.method == 'POST':
     add_feedback_form = FeedbackForm(request.POST)
@@ -350,6 +354,7 @@ def visit_details(request,visit_id):
 
   return render(request,'visit_details.html',{'visit':visit})
 
+@login_required
 def add_visit(request):
   if request.method == 'POST':
     add_visit_form = VisitForm(request.POST)
