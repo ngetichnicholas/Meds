@@ -46,6 +46,8 @@ def add_patient(request):
     
   return render(request, 'add_patient.html',{'add_patient_form':add_patient_form})
 
+
+
 def add_appointment(request):
   if request.method == 'POST':
     add_appointment_form = AppointmentForm(request.POST)
@@ -59,6 +61,27 @@ def add_appointment(request):
     
   return render(request, 'add_appointment.html',{'add_appointment_form':add_appointment_form})
 
+@login_required
+def update_appointment(request, appointment_id):
+  appointment = PatientAppointment.objects.get(pk=appointment_id)
+  if request.method == 'POST':
+    update_appointment_form = AppointmentForm(request.POST,request.FILES, instance=appointment)
+    if update_appointment_form.is_valid():
+      update_appointment_form.save()
+      messages.success(request, f'Appointment updated!')
+      return redirect('home')
+  else:
+    update_appointment_form = AppointmentForm(instance=appointment)
+
+  return render(request, 'update_appointment.html', {"update_appointment_form":update_appointment_form})
+
+@login_required
+def delete_appointment(request,appointment_id):
+  appointment = PatientAppointment.objects.get(pk=appointment_id)
+  if appointment:
+    appointment.delete_patient_appointment()
+  return redirect('home')
+
 def add_prescription(request):
   if request.method == 'POST':
     add_prescription_form = PrescriptionForm(request.POST)
@@ -71,6 +94,27 @@ def add_prescription(request):
     add_prescription_form = PrescriptionForm()
     
   return render(request, 'add_prescription.html',{'add_prescription_form':add_prescription_form})
+
+@login_required
+def update_prescription(request, prescription_id):
+  prescription = Prescription.objects.get(pk=prescription_id)
+  if request.method == 'POST':
+    update_prescription_form = PrescriptionForm(request.POST,request.FILES, instance=prescription)
+    if update_prescription_form.is_valid():
+      update_prescription_form.save()
+      messages.success(request, f'Prescription updated!')
+      return redirect('home')
+  else:
+    update_prescription_form = PrescriptionForm(instance=prescription)
+
+  return render(request, 'update_prescription.html', {"update_prescription_form":update_prescription_form})
+
+@login_required
+def delete_prescription(request,prescription_id):
+  prescription = Prescription.objects.get(pk=prescription_id)
+  if prescription:
+    prescription.delete_prescription()
+  return redirect('home')
 
 def add_drug(request):
   if request.method == 'POST':
