@@ -6,8 +6,16 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <h5 class="text-center">PATIENTS VISITS</h5>
-      <a class="nav-item nav-link text-center"  href="{% url 'add_visit' %}"><button class="btn btn-primary">Add Visit</button></a>
-        <table class="table table-bordered">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <a class="nav-item nav-link text-center"  href="{% url 'add_visit' %}"><button class="btn btn-primary">Add visit</button></a>
+        </div>
+        <div class="col-md-3">
+          <a class="nav-item nav-link text-center"  href="{% url 'export_visits' %}"><button class="btn btn-primary">Export Report</button></a>
+        </div>
+        <div class="col-md-3"></div>
+      </div>        <table class="table table-bordered">
           <tr>
             <th>First Name</th>
             <th>Second Name</th>
