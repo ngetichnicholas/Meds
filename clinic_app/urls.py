@@ -22,6 +22,7 @@ urlpatterns = [
   path('update_appointment/<int:appointment_id>', app_views.update_appointment,name='update_appointment'),
   path('delete_appointment/<int:appointment_id>', app_views.delete_appointment,name='delete_appointment'),
   path('appointment_details/<int:appointment_id>',app_views.appointment_details,name='appointment_details'),
+  path('export_appointments',app_views.export_appointments,name='export_appointments'),
 
   path('add_prescription', app_views.add_prescription,name='add_prescription'),
   path('prescriptions', app_views.prescriptions,name='prescriptions'),

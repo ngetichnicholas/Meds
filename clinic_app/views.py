@@ -42,6 +42,7 @@ def patients(request):
   patients = Patient.objects.all().order_by('-first_name')
   return render(request,'patients.html',{'patients':patients})
 
+#Export  table data as csv
 def export_patients(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = Patients'+ str(datetime.datetime.now())+'.csv'
@@ -106,6 +107,21 @@ def delete_patient(request,patient_id):
 def appointments(request):
   appointments = PatientAppointment.objects.all().order_by('-date_made')
   return render(request,'appointments.html',{'appointments':appointments})
+
+#Export  table data as csv
+def export_appointments(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = appointments'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','Gender','Age','Tel No','Status','Date Recorded','Appointment Date',])
+
+  appointments = PatientAppointment.objects.all()
+
+  for appointment in appointments:
+    writer.writerow([appointment.first_name,appointment.last_name,appointment.gender,appointment.age,appointment.phone,appointment.approve,appointment.approve,appointment.date_made,appointment.appointment_date])
+
+  return response
 
 #Get single appointment
 def appointment_details(request,appointment_id):

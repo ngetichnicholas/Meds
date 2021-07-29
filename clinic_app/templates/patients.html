@@ -5,8 +5,16 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <a class="nav-item nav-link text-center"  href="{% url 'add_patient' %}"><button class="btn btn-primary">Add patient</button></a>
-      <a class="nav-item nav-link text-center"  href="{% url 'export_patients' %}"><button class="btn btn-primary">Export Report</button></a>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <a class="nav-item nav-link text-center"  href="{% url 'add_patient' %}"><button class="btn btn-primary">Add patient</button></a>
+        </div>
+        <div class="col-md-3">
+          <a class="nav-item nav-link text-center"  href="{% url 'export_patients' %}"><button class="btn btn-primary">Export Report</button></a>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
         <table class="table table-bordered">
           <tr>
             <th>First Name</th>
