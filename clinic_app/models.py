@@ -47,6 +47,10 @@ class Patient(models.Model):
   def delete_patient(self):
     self.delete()
 
+  @classmethod
+  def search_patients(cls, patients):
+    return cls.objects.filter(first_name__icontains=patients).all()
+
   def __str__(self):
     return self.first_name
 

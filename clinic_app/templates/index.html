@@ -2,7 +2,6 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid home">
-  <h1 class="text-center">MEDS CLINIC</h1>
   <div class="row">
     <div class="col-md-3">
       <a href="{% url 'appointments' %}" class="notification approved">
@@ -35,10 +34,12 @@
   <div class="banner">
     <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
+        <form class="search-patient" action="{% url 'search' %}" role="search">
         <div class="searchbar">
-          <input class="search_input" type="text" name="" placeholder="Search patients">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          <input class="search_input" type="text" name="name" placeholder="Search patients">
+          <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
         </div>
+        </form>
       </div>
     </div>
   </div>

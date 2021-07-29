@@ -9,6 +9,8 @@ urlpatterns = [
   path('', app_views.index, name="home"),
   path('accounts/login/',app_views.login,name='login'),
   path('logout/',auth_views.LogoutView.as_view(template_name = 'registration/logout.html'),name='logout'),
+  path('search',app_views.search,name='search'),
+
 
   path('add_patient', app_views.add_patient,name='add_patient'),
   path('patients', app_views.patients,name='patients'),

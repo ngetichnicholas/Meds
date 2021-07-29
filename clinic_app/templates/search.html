@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+      {% if patients %}
+      <h1>Found {{ patients|length }} patients of searched term {{message}}</h1>
+    {% else %}
+      <h1> Found 0 patients for the search term {{message}}</h1>
+    {% endif %}    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table table-bordered">
+          <tr>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Phone No</th>
+            <th>Edit</th>
+            <th>View</th>
+            <th>Delete</th>
+          </tr>
+          {% if patients %}
+          {% for patient in patients %}
+          <tr>
+            <td>{{patient.first_name}}</td>
+            <td>{{patient.last_name}}</td>
+            <td>{{patient.phone}}</td>
+            <td><a href="{% url 'update_patient' patient.id %}" class="btn btn-primary"><i class="fas fa-pen-nib"></i> Update</a></td>
+            <td><a href="{% url 'patient_details' patient.id %}" class="btn btn-success"><i class="fas fa-eye"></i> View</a></td>
+            <td><a href="{% url 'delete_patient' patient.id %}" class="btn  btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+{% endblock %}
