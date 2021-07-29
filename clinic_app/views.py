@@ -240,6 +240,21 @@ def drugs(request):
   drugs = Medicine.objects.all()
   return render(request,'drugs.html',{'drugs':drugs})
 
+#Export  table data as csv
+def export_drugs(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = drugs'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['Name','Description','Date Recorded'])
+
+  drugs = Medicine.objects.all()
+
+  for drug in drugs:
+    writer.writerow([drug.name,drug.description,drug.date])
+
+  return response
+
 #Get single drug
 def drug_details(request,drug_id):
   try:
@@ -291,6 +306,21 @@ def feedback(request):
   feedbacks = FeedBack.objects.all().order_by('-feedback_date')
   return render(request,'feedback.html',{'feedbacks':feedbacks})
 
+#Export  table data as csv
+def export_feedbacks(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = feedbacks'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','Feedback Message','Date'])
+
+  feedbacks = FeedBack.objects.all()
+
+  for feedback in feedbacks:
+    writer.writerow([feedback.patient.first_name,feedback.patient.last_name,feedback.feedback_message,feedback.feedback_date])
+
+  return response
+
 #Get single feedback
 def feedback_details(request,feedback_id):
   try:
@@ -341,6 +371,21 @@ def history(request):
   histories = PatientHealthHistory.objects.all().order_by('-date_recorded')
   return render(request,'history.html',{'histories':histories})
 
+#Export  table data as csv
+def export_histories(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = histories'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','Date','Description'])
+
+  histories = PatientHealthHistory.objects.all()
+
+  for historie in histories:
+    writer.writerow([historie.patient.first_name,historie.patient.last_name,historie.date_recorded,historie.health_record])
+
+  return response
+
 #Get single history
 def history_details(request,history_id):
   try:
@@ -390,6 +435,21 @@ def delete_history(request,history_id):
 def visits(request):
   visits = Visit.objects.all().order_by('-date_visited')
   return render(request,'visits.html',{'visits':visits})
+
+#Export  table data as csv
+def export_visits(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = visits'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','Date','Note'])
+
+  visits = Visit.objects.all()
+
+  for visit in visits:
+    writer.writerow([visit.patient.first_name,visit.patient.last_name,visit.date_visited,visit.note])
+
+  return response
 
 #Get single visit
 def visit_details(request,visit_id):
