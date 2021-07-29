@@ -115,6 +115,8 @@ class PatientAppointment(models.Model):
   phone = models.IntegerField(blank=True,null=True)
   date_made = models.DateTimeField(auto_now_add=True)
   appointment_date = DateTimeField(default=timezone.now)
+  approve = models.BooleanField(default=False)
+
 
   def save_patient_appointment(self):
     self.save()
