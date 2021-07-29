@@ -174,6 +174,21 @@ def prescriptions(request):
   prescriptions = Prescription.objects.all().order_by('-date')
   return render(request,'prescriptions.html',{'prescriptions':prescriptions})
 
+#Export  table data as csv
+def export_prescriptions(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = prescriptions'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','Dose','Drug','Prescriber','Date','Note'])
+
+  prescriptions = Prescription.objects.all()
+
+  for prescription in prescriptions:
+    writer.writerow([prescription.patient.first_name,prescription.patient.last_name,prescription.dose,prescription.drug,prescription.prescriber,prescription.date,prescription.note])
+
+  return response
+
 #Get single prescription
 def prescription_details(request,prescription_id):
   try:

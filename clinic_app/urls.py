@@ -29,28 +29,34 @@ urlpatterns = [
   path('update_prescription/<int:prescription_id>', app_views.update_prescription,name='update_prescription'),
   path('delete_prescription/<int:prescription_id>', app_views.delete_prescription,name='delete_prescription'),
   path('prescription_details/<int:prescription_id>',app_views.prescription_details,name='prescription_details'),
+  path('export_prescriptions',app_views.export_prescriptions,name='export_prescriptions'),
 
   path('add_drug', app_views.add_drug,name='add_drug'),
   path('drugs', app_views.drugs,name='drugs'),
   path('update_drug/<int:drug_id>', app_views.update_drug,name='update_drug'),
   path('delete_drug/<int:drug_id>', app_views.delete_drug,name='delete_drug'),
   path('drug_details/<int:drug_id>',app_views.drug_details,name='drug_details'),
+  path('export_drugs',app_views.export_drugs,name='export_drugs'),
 
   path('add_health_history', app_views.add_health_history,name='add_health_history'),
   path('history', app_views.history,name='history'),
   path('update_history/<int:history_id>', app_views.update_history,name='update_history'),
   path('delete_history/<int:history_id>', app_views.delete_history,name='delete_history'),
   path('history_details/<int:history_id>',app_views.history_details,name='history_details'),
+  path('export_histories',app_views.export_histories,name='export_histories'),
+
 
   path('add_feedback', app_views.add_feedback,name='add_feedback'),
   path('feedback', app_views.feedback,name='feedback'),
   path('update_feedback/<int:feedback_id>', app_views.update_feedback,name='update_feedback'),
   path('delete_feedback/<int:feedback_id>', app_views.delete_feedback,name='delete_feedback'),
   path('feedback_details/<int:feedback_id>',app_views.feedback_details,name='feedback_details'),
+  path('export_feedbacks',app_views.export_feedbacks,name='export_feedbacks'),
 
   path('add_visit', app_views.add_visit,name='add_visit'),
   path('visits', app_views.visits,name='visits'),
   path('update_visit/<int:visit_id>', app_views.update_visit,name='update_visit'),
   path('delete_visit/<int:visit_id>', app_views.delete_visit,name='delete_visit'),
   path('visit_details/<int:visit_id>',app_views.visit_details,name='visit_details'),
+  path('export_visits',app_views.export_visits,name='export_visits'),
 ]
