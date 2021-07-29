@@ -210,7 +210,7 @@ def add_drug(request):
     if add_drug_form.is_valid():
       drug = add_drug_form.save(commit=False)
       drug.save()
-      return redirect('home')
+      return redirect('drugs')
 
   else:
     add_drug_form = DrugForm()
@@ -225,7 +225,7 @@ def update_drug(request, drug_id):
     if update_drug_form.is_valid():
       update_drug_form.save()
       messages.success(request, f'Drug updated!')
-      return redirect('home')
+      return redirect('drugs')
   else:
     update_drug_form = DrugForm(instance=drug)
 

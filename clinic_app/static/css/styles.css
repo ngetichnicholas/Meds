@@ -21,3 +21,7 @@ form {
 .nav-link {
   color: white !important;
 }
+#home {
+  width: 100%;
+  height: auto;
+}
