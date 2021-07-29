@@ -6,13 +6,14 @@ table {
   margin: 2rem;
 }
 body {
-  background-image: url('../images/clinic.jpg');
+  background-image: url('../images/back-clinic.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
 }
 tr,form {
-  background-color: #24C3B3;
+  background-color: #65CBF1;
 }
 form {
   padding: 2rem;
