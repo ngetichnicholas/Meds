@@ -26,3 +26,19 @@ form {
   width: 100%;
   height: auto;
 }
+.head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: start;
+}
+.title {
+  margin-bottom: 0;
+}
+.table-bordered {
+  margin: 0;
+}
+.btn {
+  font-size: 25px;
+}

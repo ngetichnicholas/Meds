@@ -5,16 +5,10 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <h5 class="text-center">LIST DRUGS</h5>
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-          <a class="nav-item nav-link text-center"  href="{% url 'add_drug' %}"><button class="btn btn-primary">Add Drug</button></a>
-        </div>
-        <div class="col-md-3">
-          <a class="nav-item nav-link text-center"  href="{% url 'export_drugs' %}"><button class="btn btn-primary">Export Report</button></a>
-        </div>
-        <div class="col-md-3"></div>
+      <div class="head">
+        <h5 class="title">DRUGS</h5>
+        <a class="nav-item nav-link text-center"  href="{% url 'add_drug' %}"><button class="btn btn-primary">Add Drug</button></a>
+        <a class="nav-item nav-link text-center"  href="{% url 'export_drugs' %}"><button class="btn btn-primary">Export Report</button></a>
       </div>
       <table class="table table-bordered">
           <tr>
