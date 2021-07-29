@@ -28,6 +28,9 @@ def update_staff_signal(sender, instance, created, **kwargs):
 GENDER_CHOICES = (
   ("Male", "Male"),("Female","Female")
 )
+APPOINTMENT_STATUS = (
+  ("Approved", "Approved"),("Not Approved", "Not Approved"),("Pending","Pending")
+)
 
 class Patient(models.Model):
   first_name = models.CharField(max_length=30)
@@ -115,7 +118,7 @@ class PatientAppointment(models.Model):
   phone = models.IntegerField(blank=True,null=True)
   date_made = models.DateTimeField(auto_now_add=True)
   appointment_date = DateTimeField(default=timezone.now)
-  approve = models.BooleanField(default=False)
+  approve = models.CharField(default="Pending", max_length=15, choices= APPOINTMENT_STATUS)
 
 
   def save_patient_appointment(self):

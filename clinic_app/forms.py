@@ -10,7 +10,7 @@ class PatientForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
   class Meta:
     model = PatientAppointment
-    fields = ('first_name','last_name','gender','age','phone','appointment_date')
+    fields = ('first_name','last_name','gender','age','phone','appointment_date','approve')
 
 class PrescriptionForm(forms.ModelForm):
   class Meta:
