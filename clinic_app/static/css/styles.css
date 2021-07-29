@@ -42,3 +42,113 @@ form {
 .btn {
   font-size: 25px;
 }
+.approved {
+  background-color: #258DC0;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification,.all-patients {
+  background-color: #258DC0;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: white;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 9px 15px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+.approved .badge2 {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 15px;
+  border-radius: 50%;
+  background-color: rgb(19, 185, 69);
+  color: white;
+}
+.all-patients .badge3 {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 10px;
+  border-radius: 50%;
+  background-color: rgb(26, 91, 231);
+  color: white;
+}
+.feedback .badge4 {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 15px;
+  border-radius: 50%;
+  background-color: rgb(26, 91, 231);
+  color: white;
+}
+.btns {
+  width: 5cm;
+}
+
+.banner {
+  margin-top: 10vh;
+}
+  .searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: #353b48;
+  border-radius: 30px;
+  padding: 10px;
+  }
+
+  .search_input{
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color: #1A5BE7;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_icon{
+  background: white;
+  color: #1A5BE7;
+  }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  text-decoration:none;
+  }

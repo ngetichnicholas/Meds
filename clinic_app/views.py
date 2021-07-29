@@ -16,7 +16,11 @@ import csv
 # Create your views here.
 def index(request):
   current_user = request.user
-  return render(request, 'index.html',{'current_user':current_user})
+  all_patients = Patient.objects.all()
+  feedback = FeedBack.objects.all()
+  approved_appointments = PatientAppointment.objects.filter(approve = 'Approved').all()
+  pending_appointments = PatientAppointment.objects.filter(approve = 'Pending').all()
+  return render(request, 'index.html',{'feedback':feedback, 'all_patients':all_patients,'current_user':current_user,'approved_appointments':approved_appointments,'pending_appointments':pending_appointments})
 
 def login(request):
   if request.method == 'POST':

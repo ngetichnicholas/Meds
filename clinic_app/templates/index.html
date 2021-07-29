@@ -3,7 +3,44 @@
 {% block content %}
 <div class="container-fluid home">
   <h1 class="text-center">MEDS CLINIC</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <a href="{% url 'appointments' %}" class="notification approved">
+        <span class="btns">Approved Appointments</span>
+        <span class="badge2">{{approved_appointments.count}}</span>
+      </a>
+     </div>
+     <div class="col-md-3">
+      <a href="{% url 'appointments' %}" class="notification">
+        <span class="btns">Pending Appointments</span>
+        <span class="badge">{{pending_appointments.count}}</span>
+      </a>
+
+     </div>
+     <div class="col-md-3">
+      <a href="{% url 'feedback' %}" class="notification feedback">
+        <span class="btns">Recent Feedbacks</span>
+        <span class="badge4">{{feedback.count}}</span>
+      </a>
+
+     </div>
+     <div class="col-md-3">
+      <a href="{% url 'patients' %}" class="notification all-patients">
+        <span class="btns">All patients</span>
+        <span class="badge3">{{all_patients.count}}</span>
+      </a>
+
+     </div>
+  </div>
   <div class="banner">
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search patients">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
