@@ -1,4 +1,5 @@
-from django.http.response import Http404
+from django.http import response
+from django.http.response import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,7 +9,8 @@ from django.contrib.auth import login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import *
-
+import datetime
+import csv
 
 
 # Create your views here.
@@ -40,6 +42,20 @@ def patients(request):
   patients = Patient.objects.all().order_by('-first_name')
   return render(request,'patients.html',{'patients':patients})
 
+def export_patients(request):
+  response = HttpResponse(content_type = 'text/csv')
+  response['Content-Disposition'] = 'attachment; filename = Patients'+ str(datetime.datetime.now())+'.csv'
+
+  writer = csv.writer(response)
+  writer.writerow(['First Name','Last Name','ID Number','Birth certificate No','Gender','Age','Tel No'])
+
+  patients = Patient.objects.all()
+
+  for patient in patients:
+    writer.writerow([patient.first_name,patient.last_name,patient.id_number,patient.birth_certificate_no,patient.gender,patient.age,patient.phone])
+
+  return response
+
 #Get single patient
 def patient_details(request,patient_id):
   try:
@@ -57,7 +73,7 @@ def add_patient(request):
     if add_patient_form.is_valid():
       patient = add_patient_form.save(commit=False)
       patient.save()
-      return redirect('home')
+      return redirect('patients')
 
   else:
     add_patient_form = PatientForm()
@@ -72,7 +88,7 @@ def update_patient(request, patient_id):
     if update_patient_form.is_valid():
       update_patient_form.save()
       messages.success(request, f'Patient updated!')
-      return redirect('home')
+      return redirect('patients')
   else:
     update_patient_form = PatientForm(instance=patient)
 
@@ -83,7 +99,7 @@ def delete_patient(request,patient_id):
   patient = Patient.objects.get(pk=patient_id)
   if patient:
     patient.delete_patient()
-  return redirect('home')
+  return redirect('patients')
 
 
 #Appointment views
@@ -108,7 +124,7 @@ def add_appointment(request):
     if add_appointment_form.is_valid():
       appointment = add_appointment_form.save(commit=False)
       appointment.save()
-      return redirect('home')
+      return redirect('appointments')
 
   else:
     add_appointment_form = AppointmentForm()
@@ -123,7 +139,7 @@ def update_appointment(request, appointment_id):
     if update_appointment_form.is_valid():
       update_appointment_form.save()
       messages.success(request, f'Appointment updated!')
-      return redirect('home')
+      return redirect('appointments')
   else:
     update_appointment_form = AppointmentForm(instance=appointment)
 
@@ -134,7 +150,7 @@ def delete_appointment(request,appointment_id):
   appointment = PatientAppointment.objects.get(pk=appointment_id)
   if appointment:
     appointment.delete_patient_appointment()
-  return redirect('home')
+  return redirect('appointments')
 
 
 #Prescription views
@@ -159,7 +175,7 @@ def add_prescription(request):
     if add_prescription_form.is_valid():
       prescription = add_prescription_form.save(commit=False)
       prescription.save()
-      return redirect('home')
+      return redirect('prescriptions')
 
   else:
     add_prescription_form = PrescriptionForm()
@@ -174,7 +190,7 @@ def update_prescription(request, prescription_id):
     if update_prescription_form.is_valid():
       update_prescription_form.save()
       messages.success(request, f'Prescription updated!')
-      return redirect('home')
+      return redirect('prescriptions')
   else:
     update_prescription_form = PrescriptionForm(instance=prescription)
 
@@ -185,7 +201,7 @@ def delete_prescription(request,prescription_id):
   prescription = Prescription.objects.get(pk=prescription_id)
   if prescription:
     prescription.delete_prescription()
-  return redirect('home')
+  return redirect('prescriptions')
 
 
 #Medicine views
@@ -236,7 +252,7 @@ def delete_drug(request,drug_id):
   drug = Medicine.objects.get(pk=drug_id)
   if drug:
     drug.delete_medicine()
-  return redirect('home')
+  return redirect('drugs')
 
 
 #Feedback Views
@@ -261,7 +277,7 @@ def add_feedback(request):
     if add_feedback_form.is_valid():
       feedback = add_feedback_form.save(commit=False)
       feedback.save()
-      return redirect('home')
+      return redirect('feedback')
 
   else:
     add_feedback_form = FeedbackForm()
@@ -276,7 +292,7 @@ def update_feedback(request, feedback_id):
     if update_feedback_form.is_valid():
       update_feedback_form.save()
       messages.success(request, f'Feedback updated!')
-      return redirect('home')
+      return redirect('feedback')
   else:
     update_feedback_form = FeedbackForm(instance=feedback)
 
@@ -287,7 +303,7 @@ def delete_feedback(request,feedback_id):
   feedback = FeedBack.objects.get(pk=feedback_id)
   if feedback:
     feedback.delete_feedback()
-  return redirect('home')
+  return redirect('feedback')
 
 #Health History views
 def history(request):
@@ -310,7 +326,7 @@ def add_health_history(request):
     if add_history_form.is_valid():
       history = add_history_form.save(commit=False)
       history.save()
-      return redirect('home')
+      return redirect('history')
 
   else:
     add_history_form = HealthHistoryForm()
@@ -325,7 +341,7 @@ def update_history(request, history_id):
     if update_history_form.is_valid():
       update_history_form.save()
       messages.success(request, f'Health history updated!')
-      return redirect('home')
+      return redirect('history')
   else:
     update_history_form = HealthHistoryForm(instance=history)
 
@@ -336,7 +352,7 @@ def delete_history(request,history_id):
   history = PatientHealthHistory.objects.get(pk=history_id)
   if history:
     history.delete_patient_health_history()
-  return redirect('home')
+  return redirect('history')
 
 
 #Patient Visits views
@@ -361,7 +377,7 @@ def add_visit(request):
     if add_visit_form.is_valid():
       visit = add_visit_form.save(commit=False)
       visit.save()
-      return redirect('home')
+      return redirect('visits')
 
   else:
     add_visit_form = VisitForm()
@@ -377,7 +393,7 @@ def update_visit(request, visit_id):
     if update_visit_form.is_valid():
       update_visit_form.save()
       messages.success(request, f'Visit updated!')
-      return redirect('home')
+      return redirect('visits')
   else:
     update_visit_form = VisitForm(instance=visit)
 
@@ -388,4 +404,4 @@ def delete_visit(request,visit_id):
   visit = Visit.objects.get(pk=visit_id)
   if visit:
     visit.delete_visit()
-  return redirect('home')
+  return redirect('visits')

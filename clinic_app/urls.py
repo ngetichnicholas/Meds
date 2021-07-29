@@ -15,6 +15,7 @@ urlpatterns = [
   path('update_patient/<int:patient_id>', app_views.update_patient,name='update_patient'),
   path('delete_patient/<int:patient_id>', app_views.delete_patient,name='delete_patient'),
   path('patient_details/<int:patient_id>',app_views.patient_details,name='patient_details'),
+  path('export_patients',app_views.export_patients,name='export_patients'),
 
   path('add_appointment', app_views.add_appointment,name='add_appointment'),
   path('appointments', app_views.appointments,name='appointments'),
