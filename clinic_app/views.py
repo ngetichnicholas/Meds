@@ -46,6 +46,19 @@ def patients(request):
   patients = Patient.objects.all().order_by('-first_name')
   return render(request,'patients.html',{'patients':patients})
 
+@login_required
+def search(request):
+  if 'name' in request.GET and request.GET["name"]:
+    search_term = request.GET.get("name")
+    searched_patients = Patient.search_patients(search_term)
+    message = f"{search_term}"
+
+    return render(request,'search.html', {"message":message,"patients":searched_patients})
+
+  else:
+    message = "You haven't searched for any term"
+    return render(request,'search.html',{"message":message})
+
 #Export  table data as csv
 def export_patients(request):
   response = HttpResponse(content_type = 'text/csv')
