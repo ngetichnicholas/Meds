@@ -14,6 +14,7 @@ import csv
 
 
 # Create your views here.
+@login_required
 def index(request):
   current_user = request.user
   all_patients = Patient.objects.all()
@@ -42,6 +43,7 @@ def login(request):
 
 
 #Patient views
+@login_required
 def patients(request):
   patients = Patient.objects.all().order_by('-first_name')
   return render(request,'patients.html',{'patients':patients})
@@ -60,6 +62,7 @@ def search(request):
     return render(request,'search.html',{"message":message})
 
 #Export  table data as csv
+@login_required
 def export_patients(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = Patients'+ str(datetime.datetime.now())+'.csv'
@@ -75,6 +78,7 @@ def export_patients(request):
   return response
 
 #Get single patient
+@login_required
 def patient_details(request,patient_id):
   try:
     patient =get_object_or_404(Patient, pk = patient_id)
@@ -121,11 +125,13 @@ def delete_patient(request,patient_id):
 
 
 #Appointment views
+@login_required
 def appointments(request):
   appointments = PatientAppointment.objects.all().order_by('-date_made')
   return render(request,'appointments.html',{'appointments':appointments})
 
 #Export  table data as csv
+@login_required
 def export_appointments(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = appointments'+ str(datetime.datetime.now())+'.csv'
@@ -141,6 +147,7 @@ def export_appointments(request):
   return response
 
 #Get single appointment
+@login_required
 def appointment_details(request,appointment_id):
   try:
     appointment =get_object_or_404(PatientAppointment, pk = appointment_id)
@@ -187,11 +194,13 @@ def delete_appointment(request,appointment_id):
 
 
 #Prescription views
+@login_required
 def prescriptions(request):
   prescriptions = Prescription.objects.all().order_by('-date')
   return render(request,'prescriptions.html',{'prescriptions':prescriptions})
 
 #Export  table data as csv
+@login_required
 def export_prescriptions(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = prescriptions'+ str(datetime.datetime.now())+'.csv'
@@ -207,6 +216,7 @@ def export_prescriptions(request):
   return response
 
 #Get single prescription
+@login_required
 def prescription_details(request,prescription_id):
   try:
     prescription =get_object_or_404(Prescription, pk = prescription_id)
@@ -253,11 +263,13 @@ def delete_prescription(request,prescription_id):
 
 
 #Medicine views
+@login_required
 def drugs(request):
   drugs = Medicine.objects.all()
   return render(request,'drugs.html',{'drugs':drugs})
 
 #Export  table data as csv
+@login_required
 def export_drugs(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = drugs'+ str(datetime.datetime.now())+'.csv'
@@ -273,6 +285,7 @@ def export_drugs(request):
   return response
 
 #Get single drug
+@login_required
 def drug_details(request,drug_id):
   try:
     drug =get_object_or_404(Medicine, pk = drug_id)
@@ -319,11 +332,13 @@ def delete_drug(request,drug_id):
 
 
 #Feedback Views
+@login_required
 def feedback(request):
   feedbacks = FeedBack.objects.all().order_by('-feedback_date')
   return render(request,'feedback.html',{'feedbacks':feedbacks})
 
 #Export  table data as csv
+@login_required
 def export_feedbacks(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = feedbacks'+ str(datetime.datetime.now())+'.csv'
@@ -339,6 +354,7 @@ def export_feedbacks(request):
   return response
 
 #Get single feedback
+@login_required
 def feedback_details(request,feedback_id):
   try:
     feedback =get_object_or_404(FeedBack, pk = feedback_id)
@@ -384,11 +400,13 @@ def delete_feedback(request,feedback_id):
   return redirect('feedback')
 
 #Health History views
+@login_required
 def history(request):
   histories = PatientHealthHistory.objects.all().order_by('-date_recorded')
   return render(request,'history.html',{'histories':histories})
 
 #Export  table data as csv
+@login_required
 def export_histories(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = histories'+ str(datetime.datetime.now())+'.csv'
@@ -404,6 +422,7 @@ def export_histories(request):
   return response
 
 #Get single history
+@login_required
 def history_details(request,history_id):
   try:
     history =get_object_or_404(PatientHealthHistory, pk = history_id)
@@ -413,6 +432,7 @@ def history_details(request,history_id):
 
   return render(request,'history_details.html',{'history':history})
 
+@login_required
 def add_health_history(request):
   if request.method == 'POST':
     add_history_form = HealthHistoryForm(request.POST)
@@ -449,11 +469,13 @@ def delete_history(request,history_id):
 
 
 #Patient Visits views
+@login_required
 def visits(request):
   visits = Visit.objects.all().order_by('-date_visited')
   return render(request,'visits.html',{'visits':visits})
 
 #Export  table data as csv
+@login_required
 def export_visits(request):
   response = HttpResponse(content_type = 'text/csv')
   response['Content-Disposition'] = 'attachment; filename = visits'+ str(datetime.datetime.now())+'.csv'
@@ -469,6 +491,7 @@ def export_visits(request):
   return response
 
 #Get single visit
+@login_required
 def visit_details(request,visit_id):
   try:
     visit =get_object_or_404(Visit, pk = visit_id)
