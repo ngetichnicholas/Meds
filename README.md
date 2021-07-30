@@ -4,6 +4,15 @@ Nicholas Ngetich
 *****
 ### Description
 This is a Django web application for managing patients information in a clinic.
+*****
+### Application dashboard
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627642150/screencapture-127-0-0-1-8000-2021-07-30-13_46_20_mjfamv.png)
+*****
+### Patients List
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627642150/screencapture-127-0-0-1-8000-patients-2021-07-30-13_46_53_i0ftcr.png)
+*****
 ### Prerequisites
 * Text editor eg Visual Studio Code
 * You need to have git installed. You can install it with the following command in your terminal
